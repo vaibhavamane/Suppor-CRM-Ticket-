@@ -2,6 +2,7 @@ from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, Asyn
 from sqlalchemy.orm import declarative_base
 from app.config.settings import settings
 
+import ssl
 import urllib.parse
 
 # Check if we are running with SQLite (often used for testing/local runs)
@@ -27,13 +28,35 @@ elif db_url.startswith("postgresql://"):
     db_url = db_url.replace("postgresql://", "postgresql+asyncpg://", 1)
 
 is_sqlite = db_url.startswith("sqlite")
-connect_args = {"check_same_thread": False} if is_sqlite else {}
+
+connect_args = {}
+if is_sqlite:
+    connect_args["check_same_thread"] = False
+else:
+    # Configure custom SSL context to bypass verification errors with self-signed certificates
+    ssl_context = ssl.create_default_context()
+    ssl_context.check_hostname = False
+    ssl_context.verify_mode = ssl.CERT_NONE
+    connect_args["ssl"] = ssl_context
+
+engine_args = {
+    "connect_args": connect_args,
+    "echo": False
+}
+
+# Connection pool tuning optimized for serverless environments (like Vercel)
+if not is_sqlite:
+    engine_args.update({
+        "pool_size": 2,
+        "max_overflow": 0,
+        "pool_recycle": 1800,
+        "pool_pre_ping": True
+    })
 
 # Create engine
 engine = create_async_engine(
     db_url,
-    connect_args=connect_args,
-    echo=False
+    **engine_args
 )
 
 # Async session maker

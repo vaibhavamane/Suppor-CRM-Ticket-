@@ -16,20 +16,38 @@ logging.basicConfig(level=logging.INFO)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # 1. Startup: Create database tables if they do not exist
-    logger.info("Initializing database tables...")
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-    logger.info("Database tables initialized.")
+    # Detect if we are running in the Vercel serverless environment
+    is_vercel = os.environ.get("VERCEL") == "1" or "VERCEL_ENV" in os.environ
+
+    # 1. Startup: Create database tables if they do not exist (Skip on Vercel)
+    if not is_vercel:
+        logger.info("Local environment detected. Initializing database tables...")
+        try:
+            async with engine.begin() as conn:
+                await conn.run_sync(Base.metadata.create_all)
+            logger.info("Database tables initialized.")
+        except Exception as e:
+            logger.error(f"Error initializing local database tables: {e}")
+    else:
+        logger.info("Vercel deployment environment detected. Skipping automatic table migration.")
 
     # 2. Startup: Load tickets and initialize Bloom Filter
-    async with async_session_maker() as session:
-        await bloom_service.initialize_from_db(session)
+    try:
+        logger.info("Initializing Bloom Filter from database...")
+        async with async_session_maker() as session:
+            await bloom_service.initialize_from_db(session)
+        logger.info("Bloom Filter initialized successfully.")
+    except Exception as e:
+        logger.error(f"Database error during Bloom Filter startup initialization: {e}")
+        logger.warning("Application starting up without pre-initialized Bloom Filter cache.")
         
     yield
     # 3. Shutdown: Dispose database engine connections
     logger.info("Shutting down engine...")
-    await engine.dispose()
+    try:
+        await engine.dispose()
+    except Exception as e:
+        logger.error(f"Error disposing database engine on shutdown: {e}")
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -37,6 +55,22 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan
 )
+
+# API Health Check Endpoint (useful for verifying Vercel & Supabase connection health)
+@app.get("/api/health", include_in_schema=False)
+async def health_check():
+    from sqlalchemy import text
+    try:
+        async with async_session_maker() as session:
+            await session.execute(text("SELECT 1"))
+        return {"status": "healthy", "database": "connected"}
+    except Exception as e:
+        logger.error(f"Database health check query failed: {e}")
+        from fastapi.responses import JSONResponse
+        return JSONResponse(
+            status_code=500,
+            content={"status": "unhealthy", "error": str(e)}
+        )
 
 # Enable CORS for external development or API testing
 app.add_middleware(
