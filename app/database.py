@@ -6,7 +6,7 @@ import ssl
 import urllib.parse
 
 # Check if we are running with SQLite (often used for testing/local runs)
-db_url = settings.DATABASE_URL
+db_url = settings.DATABASE_URL.strip("'\"")
 
 # Automatically URL-encode the password if it contains '@' (common in Supabase passwords)
 if "@" in db_url:

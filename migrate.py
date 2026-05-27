@@ -19,6 +19,7 @@ async def migrate():
     if not postgres_url:
         print("DATABASE_URL not found in environment or .env file.")
         return
+    postgres_url = postgres_url.strip("'\"")
 
     # Automatically URL-encode the password if it contains '@'
     if "@" in postgres_url:
