@@ -1,4 +1,4 @@
-# Datastraw CRM | Ticket Management System with Bloom Filter Search Cache
+# Suppor CRM | Ticket Management System with Bloom Filter Search Cache
 
 A production-ready, highly optimized CRM backend and frontend dashboard for managing support tickets. Built using **Python FastAPI**, **PostgreSQL** (with a seamless fallback to **SQLite** for rapid local runs), **SQLAlchemy Async ORM**, **Pydantic v2**, and optimized with a **Bloom Filter** search cache using the `pybloom-live` library to bypass database queries for non-existent keywords.
 
@@ -96,25 +96,6 @@ The application has a smart fallback that runs a local SQLite database (`tickets
    - Web GUI Dashboard: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
    - Interactive Swagger API Docs: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
----
-
-### Option B: Docker Compose (Production Setup with PostgreSQL)
-Spins up both the FastAPI application and a PostgreSQL 15 database instance.
-
-1. **Run Docker Compose**:
-   ```bash
-   docker-compose up --build -d
-   ```
-
-2. **Database Migrations & Lifecycle**:
-   FastAPI automatically runs table creations on start. The compose configuration waits until the PostgreSQL database health check succeeds before starting FastAPI.
-
-3. **Access App**:
-   - Web GUI Dashboard: [http://localhost:8000/](http://localhost:8000/)
-   - Swagger API Docs: [http://localhost:8000/docs](http://localhost:8000/docs)
-
----
-
 ## API Documentation & Examples
 
 ### 1. Create Ticket
@@ -135,8 +116,6 @@ Spins up both the FastAPI application and a PostgreSQL 15 database instance.
     "created_at": "2026-05-26T11:05:00Z"
   }
   ```
-
----
 
 ### 2. List Tickets
 - **URL**: `GET /api/tickets`
