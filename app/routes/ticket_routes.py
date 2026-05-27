@@ -1,5 +1,5 @@
 from typing import List, Optional
-from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
+from fastapi import APIRouter, Depends, HTTPException, Query, Response, status as http_status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database import get_db
@@ -18,7 +18,7 @@ router = APIRouter(prefix="/tickets", tags=["Tickets"])
 @router.post(
     "",
     response_model=TicketCreateResponse,
-    status_code=status.HTTP_201_CREATED,
+    status_code=http_status.HTTP_201_CREATED,
     summary="Create a new ticket"
 )
 async def create_new_ticket(
@@ -34,7 +34,7 @@ async def create_new_ticket(
         return ticket
     except Exception as e:
         raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            status_code=http_status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"An error occurred while creating the ticket: {str(e)}"
         )
 
@@ -75,7 +75,7 @@ async def list_tickets(
         return tickets
     except Exception as e:
         raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            status_code=http_status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"An error occurred while fetching tickets: {str(e)}"
         )
 
@@ -94,7 +94,7 @@ async def get_ticket_details(
     ticket = await ticket_service.get_ticket_by_id(db, ticket_id)
     if not ticket:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
+            status_code=http_status.HTTP_404_NOT_FOUND,
             detail=f"Ticket with ID {ticket_id} not found."
         )
     return ticket
@@ -114,7 +114,7 @@ async def update_existing_ticket(
     """
     if ticket_update.status is None and ticket_update.notes is None:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
+            status_code=http_status.HTTP_400_BAD_REQUEST,
             detail="At least one field ('status' or 'notes') must be provided for update."
         )
         
@@ -127,7 +127,7 @@ async def update_existing_ticket(
     
     if not ticket:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
+            status_code=http_status.HTTP_404_NOT_FOUND,
             detail=f"Ticket with ID {ticket_id} not found."
         )
         
