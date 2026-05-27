@@ -13,8 +13,8 @@ class Ticket(Base):
     subject = Column(String, nullable=False)
     description = Column(Text, nullable=False)
     status = Column(String, default="Open", nullable=False)  # "Open", "In Progress", "Closed"
-    created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), nullable=False)
-    updated_at = Column(DateTime, default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc), nullable=False)
+    created_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), nullable=False)
+    updated_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), onupdate=lambda: datetime.now(timezone.utc), nullable=False)
 
     # Relationship to notes
     notes = relationship("Note", back_populates="ticket", cascade="all, delete-orphan", lazy="selectin")
