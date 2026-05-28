@@ -1,4 +1,4 @@
-# Suppor CRM | Ticket Management System with Bloom Filter Search Cache
+# Suppor CRM | Ticket Management System with Bloom Filter Search Cache 
 
 A production-ready, highly optimized CRM backend and frontend dashboard for managing support tickets. Built using **Python FastAPI**, **PostgreSQL** (with a seamless fallback to **SQLite** for rapid local runs), **SQLAlchemy Async ORM**, **Pydantic v2**, and optimized with a **Bloom Filter** search cache using the `pybloom-live` library to bypass database queries for non-existent keywords.
 
