@@ -17,14 +17,11 @@ const elements = {
     searchInput: document.getElementById('search-input'),
     bloomIndicator: document.getElementById('bloom-indicator'),
     filterTabs: document.querySelectorAll('.filter-tab'),
-<<<<<<< HEAD
-=======
     navItems: document.querySelectorAll('.nav-item'),
     navCountAll: document.getElementById('nav-count-all'),
     navCountOpen: document.getElementById('nav-count-open'),
     navCountProgress: document.getElementById('nav-count-progress'),
     navCountClosed: document.getElementById('nav-count-closed'),
->>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
     btnPrevPage: document.getElementById('btn-prev-page'),
     btnNextPage: document.getElementById('btn-next-page'),
     pageDisplay: document.getElementById('page-display'),
@@ -100,11 +97,6 @@ function debounce(func, delay) {
 // Initialize Application
 document.addEventListener('DOMContentLoaded', () => {
     fetchTickets();
-<<<<<<< HEAD
-    setupEventListeners();
-});
-
-=======
     fetchStatusCounts();
     setupEventListeners();
 });
@@ -129,7 +121,6 @@ async function fetchStatusCounts() {
     }
 }
 
->>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
 // Event Listeners Setup
 function setupEventListeners() {
     // Search input event
@@ -159,8 +150,6 @@ function setupEventListeners() {
         });
     });
 
-<<<<<<< HEAD
-=======
     // Sidebar nav items (sync with filter tabs)
     elements.navItems.forEach(item => {
         item.addEventListener('click', () => {
@@ -176,7 +165,6 @@ function setupEventListeners() {
         });
     });
 
->>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
     // Pagination
     elements.btnPrevPage.addEventListener('click', () => {
         if (state.filters.page > 1) {
@@ -442,10 +430,7 @@ async function handleStatusChange(e) {
         // Refresh details and ticket list
         await loadTicketDetails(ticket.ticket_id);
         fetchTickets();
-<<<<<<< HEAD
-=======
         fetchStatusCounts();
->>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
     } catch (error) {
         console.error(error);
         showToast('Error updating status', 'error');
@@ -524,10 +509,7 @@ async function handleCreateTicket(e) {
         
         // Refresh ticket list and select the new ticket
         await fetchTickets();
-<<<<<<< HEAD
-=======
         fetchStatusCounts();
->>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
         
         // Automatically load detail for the newly created ticket
         loadTicketDetails(result.ticket_id);
