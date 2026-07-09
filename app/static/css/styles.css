@@ -1,5 +1,6 @@
 /* Global Reset & Base Styling */
 :root {
+<<<<<<< HEAD
     --bg-main: #0b111e;
     --bg-panel: rgba(22, 30, 49, 0.65);
     --bg-panel-solid: #161e31;
@@ -28,12 +29,50 @@
     --text-primary: #f3f4f6;
     --text-secondary: #9ca3af;
     --text-muted: #6b7280;
+=======
+    /* Aurora Theme — deep ink canvas with violet → cyan accents */
+    --bg-main: #0a0a14;
+    --bg-panel: rgba(24, 22, 43, 0.55);
+    --bg-panel-solid: #15132a;
+    --bg-card: rgba(38, 34, 66, 0.45);
+    --bg-card-hover: rgba(48, 42, 82, 0.7);
+    --border-light: rgba(167, 139, 250, 0.12);
+    --border-focus: #a78bfa;
+    
+    /* Primary — violet/indigo gradient family */
+    --primary: #a78bfa;
+    --primary-2: #22d3ee;
+    --primary-glow: rgba(167, 139, 250, 0.35);
+    --primary-hover: #c4b5fd;
+    
+    /* Status colors — soft, elegant pastels on dark */
+    --success: #34d399;
+    --success-glow: rgba(52, 211, 153, 0.18);
+    --success-text: #6ee7b7;
+    
+    --warning: #fbbf24;
+    --warning-glow: rgba(251, 191, 36, 0.18);
+    --warning-text: #fcd34d;
+    
+    --danger: #fb7185;
+    --danger-glow: rgba(251, 113, 133, 0.18);
+    --danger-text: #fda4af;
+    
+    --text-primary: #f5f3ff;
+    --text-secondary: #b8b2d8;
+    --text-muted: #7c769c;
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
     
     --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     
+<<<<<<< HEAD
     --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
     --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.15);
+=======
+    --shadow-premium: 0 20px 50px -20px rgba(0, 0, 0, 0.7);
+    --shadow-glow: 0 0 24px rgba(167, 139, 250, 0.22);
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
 }
 
 * {
@@ -49,13 +88,20 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     background-image: 
+<<<<<<< HEAD
         radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
         radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%);
+=======
+        radial-gradient(at 12% 8%, rgba(167, 139, 250, 0.16) 0px, transparent 45%),
+        radial-gradient(at 88% 18%, rgba(34, 211, 238, 0.12) 0px, transparent 45%),
+        radial-gradient(at 75% 95%, rgba(236, 72, 153, 0.10) 0px, transparent 45%);
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
 }
 
 /* App Container Layout */
 .app-container {
     display: flex;
+<<<<<<< HEAD
     flex-direction: column;
     height: 100vh;
     max-width: 1600px;
@@ -70,6 +116,39 @@ body {
     align-items: center;
     padding: 1.25rem 0;
     border-bottom: 1px solid var(--border-light);
+=======
+    height: 100vh;
+    width: 100%;
+    padding: 1.25rem;
+    gap: 1.25rem;
+    overflow: hidden;
+}
+
+/* Main Workspace */
+.app-main {
+    display: grid;
+    grid-template-columns: minmax(360px, 30%) 1fr;
+    gap: 1.25rem;
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    background: var(--bg-panel);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-light);
+    border-radius: 1.25rem;
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: var(--shadow-premium);
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
 }
 
 .brand {
@@ -82,6 +161,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
     background: linear-gradient(135deg, var(--primary), #8b5cf6);
     color: #fff;
     padding: 0.5rem;
@@ -112,6 +192,138 @@ body {
 
 .panel {
     background: var(--bg-panel);
+=======
+    background: linear-gradient(135deg, var(--primary), var(--primary-2));
+    color: #fff;
+    padding: 0.6rem;
+    border-radius: 0.85rem;
+    box-shadow: var(--shadow-glow);
+    flex-shrink: 0;
+}
+
+.brand-text h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+}
+
+.brand-text h1 span {
+    color: var(--primary);
+}
+
+.brand-text p {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 0.15rem;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    flex: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.7rem 0.85rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    text-align: left;
+}
+
+.nav-item svg {
+    flex-shrink: 0;
+    opacity: 0.8;
+}
+
+.nav-item span:nth-child(2) {
+    flex: 1;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+}
+
+.nav-item.active {
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.18), rgba(34, 211, 238, 0.10));
+    border-color: rgba(167, 139, 250, 0.3);
+    color: #fff;
+}
+
+.nav-item.active svg {
+    color: var(--primary);
+    opacity: 1;
+}
+
+.nav-count {
+    font-size: 0.7rem;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+    padding: 0.1rem 0.5rem;
+    border-radius: 9999px;
+    min-width: 1.75rem;
+    text-align: center;
+}
+
+.nav-count.status-open { background: var(--danger-glow); color: var(--danger-text); }
+.nav-count.status-progress { background: var(--warning-glow); color: var(--warning-text); }
+.nav-count.status-closed { background: var(--success-glow); color: var(--success-text); }
+
+.sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.bloom-card {
+    background: rgba(16, 185, 129, 0.06);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+    border-radius: 0.875rem;
+    padding: 0.85rem 1rem;
+}
+
+.bloom-head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--success-text);
+}
+
+.bloom-desc {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+    line-height: 1.4;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* Common Panels and Glassmorphism */
+.panel {
+    background:
+        linear-gradient(160deg, rgba(167, 139, 250, 0.06), rgba(34, 211, 238, 0.02)),
+        var(--bg-panel);
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border-light);
@@ -153,6 +365,7 @@ body {
 }
 
 .btn-primary {
+<<<<<<< HEAD
     background: var(--primary);
     color: #fff;
     box-shadow: 0 4px 12px var(--primary-glow);
@@ -162,6 +375,18 @@ body {
     background: var(--primary-hover);
     transform: translateY(-1px);
     box-shadow: 0 6px 16px var(--primary-glow);
+=======
+    background: linear-gradient(135deg, var(--primary), var(--primary-2));
+    color: #0a0a14;
+    font-weight: 600;
+    box-shadow: 0 6px 18px var(--primary-glow);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-hover), var(--primary-2));
+    transform: translateY(-1px);
+    box-shadow: 0 8px 22px var(--primary-glow);
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
 }
 
 .btn-primary:active {
@@ -226,9 +451,15 @@ body {
 }
 
 .count-badge {
+<<<<<<< HEAD
     background: rgba(59, 130, 246, 0.15);
     color: #93c5fd;
     border: 1px solid rgba(59, 130, 246, 0.2);
+=======
+    background: rgba(167, 139, 250, 0.15);
+    color: #c4b5fd;
+    border: 1px solid rgba(167, 139, 250, 0.22);
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
 }
 
 /* Search and Filters Section */
@@ -261,8 +492,13 @@ body {
 .search-box input:focus {
     outline: none;
     border-color: var(--border-focus);
+<<<<<<< HEAD
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
     background: rgba(15, 23, 42, 0.8);
+=======
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+    background: rgba(21, 19, 42, 0.85);
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
 }
 
 .search-icon {
@@ -413,12 +649,21 @@ body {
 }
 
 .ticket-card.active {
+<<<<<<< HEAD
     background: rgba(59, 130, 246, 0.08);
     border-color: rgba(59, 130, 246, 0.3);
 }
 
 .ticket-card.active::before {
     background: var(--primary);
+=======
+    background: rgba(167, 139, 250, 0.10);
+    border-color: rgba(167, 139, 250, 0.35);
+}
+
+.ticket-card.active::before {
+    background: linear-gradient(180deg, var(--primary), var(--primary-2));
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
 }
 
 .ticket-card-header {
@@ -519,7 +764,11 @@ body {
 .spinner {
     width: 28px;
     height: 28px;
+<<<<<<< HEAD
     border: 3px solid rgba(255, 255, 255, 0.05);
+=======
+    border: 3px solid rgba(167, 139, 250, 0.12);
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
     border-top-color: var(--primary);
     border-radius: 50%;
     animation: spin 1s infinite linear;
@@ -551,6 +800,11 @@ body {
     height: 100%;
     padding: 3rem;
     color: var(--text-secondary);
+<<<<<<< HEAD
+=======
+    background:
+        radial-gradient(at 50% 40%, rgba(167, 139, 250, 0.08) 0px, transparent 60%);
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
 }
 
 .empty-illustration {
@@ -587,7 +841,11 @@ body {
     flex-direction: column;
     height: 100%;
     overflow-y: auto;
+<<<<<<< HEAD
     padding: 1.5rem;
+=======
+    padding: 1.75rem 2rem;
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
 }
 
 .hidden {
@@ -611,7 +869,11 @@ body {
     font-size: 1.5rem;
     font-weight: 800;
     letter-spacing: 0.025em;
+<<<<<<< HEAD
     background: linear-gradient(to right, #fff, var(--text-secondary));
+=======
+    background: linear-gradient(to right, var(--primary), var(--primary-2));
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -647,6 +909,10 @@ body {
 
 .form-select:focus {
     border-color: var(--border-focus);
+<<<<<<< HEAD
+=======
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
 }
 
 .divider {
@@ -671,15 +937,24 @@ body {
     width: 44px;
     height: 44px;
     border-radius: 50%;
+<<<<<<< HEAD
     background: linear-gradient(135deg, var(--primary), #4f46e5);
     color: #fff;
+=======
+    background: linear-gradient(135deg, var(--primary), var(--primary-2));
+    color: #0a0a14;
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
     font-size: 1.1rem;
+<<<<<<< HEAD
     box-shadow: 0 4px 10px rgba(79, 70, 229, 0.2);
+=======
+    box-shadow: 0 4px 10px rgba(167, 139, 250, 0.25);
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
 }
 
 .customer-details h4 {
@@ -816,8 +1091,13 @@ body {
 
 .add-note-form textarea:focus {
     border-color: var(--border-focus);
+<<<<<<< HEAD
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
     background: rgba(15, 23, 42, 0.8);
+=======
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+    background: rgba(21, 19, 42, 0.85);
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
 }
 
 .form-actions {
@@ -917,8 +1197,13 @@ body {
 
 .form-group input:focus, .form-group textarea:focus {
     border-color: var(--border-focus);
+<<<<<<< HEAD
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
     background: rgba(15, 23, 42, 0.6);
+=======
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.15);
+    background: rgba(21, 19, 42, 0.6);
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
 }
 
 .modal-footer {
@@ -969,6 +1254,13 @@ body {
 .toast-error::before { background-color: var(--danger); }
 .toast-info::before { background-color: var(--primary); }
 
+<<<<<<< HEAD
+=======
+.toast-info {
+    border-color: rgba(167, 139, 250, 0.25);
+}
+
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
 @keyframes toast-in {
     from { transform: translateX(100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
@@ -979,12 +1271,17 @@ body {
 }
 
 /* Responsive adjustments */
+<<<<<<< HEAD
 @media (max-width: 1024px) {
+=======
+@media (max-width: 1100px) {
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
     .app-main {
         grid-template-columns: 340px 1fr;
     }
 }
 
+<<<<<<< HEAD
 @media (max-width: 768px) {
     .app-main {
         grid-template-columns: 1fr;
@@ -1005,6 +1302,54 @@ body {
         max-height: 500px;
     }
     
+=======
+@media (max-width: 900px) {
+    .app-container {
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 2rem;
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        flex: 1 1 100%;
+    }
+
+    .nav-item {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .sidebar-footer {
+        flex: 1 1 100%;
+        flex-direction: row;
+    }
+
+    .bloom-card {
+        flex: 1;
+    }
+
+    .app-main {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        height: auto;
+        overflow: visible;
+    }
+
+    .list-panel, .detail-panel {
+        max-height: 600px;
+    }
+
+>>>>>>> 86ae25d (Redesign UI: Aurora theme, sidebar with live counts, full-viewport layout)
     .form-grid {
         grid-template-columns: 1fr;
     }
